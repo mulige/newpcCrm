@@ -12,36 +12,23 @@
 }
 
 //radio-button鼠标滑过
-.el-radio-button__inner:hover {
-    color: #8ea3be;
-}
+//.el-radio-button__inner:hover {
+//  color: #8ea3be;
+//}
 
 
 
 
-//一级标题
 .title{
-    height: 30px;
-    line-height: 30px;
-    border-bottom: 1px solid #ccc;
-    background: #eee;
-    font-size: 14px;
-    color:#333;
+    height: 16px;
+    font-size: 12px;
+    line-height: 16px;
     .title-icon{
-        color: #8ea3be;
-        margin-right: 2px;
+        color: #409EFF;
+        margin-right: 3px;
     }
 }
 
-//二级标题
-.inner-title{
-    height:30px;
-    line-height: 30px;
-    border-bottom: 1px solid #ccc;
-    font-size: 12px;
-    .title-icon{
-        color: #8ea3be;
-        margin-right: 2px;
-        font-size: 12px;
-    }
+[v-cloak] {
+  display: none;
 }
