@@ -1,5 +1,5 @@
 
-var api = ''
+let api = ''
 if (process.env.NODE_ENV === 'development') {
   api = ''
 } else if (process.env.NODE_ENV === 'prodtest') {

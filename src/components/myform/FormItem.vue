@@ -36,6 +36,8 @@
       
       <multiple-input v-if="formItem.type=='multipleInput'" v-model="modelData[formItem.model]"  :style="{width: formItem.config.width||'100%'}" :clearable="formItem.config.clearable" :disabled="formItem.config.disabled" :placeholder="formItem.config.placeholder">
       </multiple-input>
+      
+      
     </el-form-item>
   </el-col>
 </template>
@@ -45,6 +47,7 @@ import WInput from '@/components/Input'
 import WSelect from '@/components/Select'
 import WAutocomplete from '@/components/Autocomplete'
 import MultipleInput from '@/components/MultipleInput'
+import Filter from '@/components/Filter'
 export default {
   name: 'formType',
   props: {
@@ -93,7 +96,8 @@ export default {
     WInput,
     WSelect,
     WAutocomplete,
-    MultipleInput
+    MultipleInput,
+    Filter
   },
   watch: {
     modelData: {

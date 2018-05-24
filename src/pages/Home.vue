@@ -16,10 +16,8 @@
 				      <el-radio-button :label="2">当年创收</el-radio-button>
 				      <el-radio-button :label="3">近12个月资产分值</el-radio-button>
 				    </el-radio-group>
-				    <el-row style="height:200px;overflow: hidden;">
-				    	<inner-table  v-show="orderType==1" :labels="labels" :jsonData="jsonData"></inner-table>
-				    	<inner-table   v-show="orderType==2" :labels="labels" :jsonData="jsonData1"></inner-table>
-				    	<inner-table  v-show="orderType==3" :labels="labels" :jsonData="jsonData2"></inner-table>
+				    <el-row style="height:240px;overflow: hidden;">
+				    	<inner-table  :labels="labels" :jsonData="jsonData" :apiUrl="apiUrl" :queryParams="params" :pagination="true" :total="2000"></inner-table>
 				    </el-row>
 		    	</el-col>
 		    	<el-col class="content-block" :span="12">
@@ -31,10 +29,8 @@
 				      <el-radio-button :label="2">周报</el-radio-button>
 				      <el-radio-button :label="3">月报</el-radio-button>
 				    </el-radio-group>
-				    <el-row style="height:200px;overflow: hidden;">
-				    	<inner-table v-show="orderType1==1" :labels="labels" :jsonData="jsonData"></inner-table>
-				    	<inner-table v-show="orderType1==2" :labels="labels" :jsonData="jsonData1"></inner-table>
-				    	<inner-table v-show="orderType1==3" :labels="labels" :jsonData="jsonData2"></inner-table>
+				    <el-row style="height:240px;overflow: hidden;">
+				    	<inner-table  :labels="labels" :jsonData="jsonData" :apiUrl="apiUrl" :queryParams="params1" :pagination="true" :total="2000"></inner-table>
 				    </el-row>
 		    	</el-col>
 		    	<el-col class="content-block" :span="12">
@@ -45,30 +41,33 @@
 				      <el-radio-button :label="1">近12个月</el-radio-button>
 				      <el-radio-button :label="2">近15个交易日</el-radio-button>
 				    </el-radio-group>
-				    <el-row style="height:200px;overflow: hidden;">
-				    	<inner-table   v-show="orderType2==1" :labels="labels" :jsonData="jsonData"></inner-table>
-				    	<inner-table   v-show="orderType2==2" :labels="labels" :jsonData="jsonData1"></inner-table>
-				    	<inner-table   v-show="orderType2==3" :labels="labels" :jsonData="jsonData2"></inner-table>
+				    <el-row style="height:240px;overflow: hidden;">
+				    	<inner-table  :labels="labels" :jsonData="jsonData" :apiUrl="apiUrl" :queryParams="params2" :pagination="true" :total="2000"></inner-table>
 				    </el-row>
 				    	
 		    	</el-col>
 		    </el-row>
 			
 		</el-row>
+		
 	</div>	
 </template>
 
 <script>
 	import InnerTable from "@/components/InnerTable"
+	import http from "@/utils/http.js"
 	export default {
 	  name: 'home',
 	  data() {
 	  	return {
 	  	  type: 1,
 	  	  orderType: 1,
+	  	  apiUrl:'https://www.apiopen.top/meituApi?page=1',
+	  	  params:{},
 	  	  orderType1: 1,
+	  	  params1:{},
 	  	  orderType2: 1,
-	  	  
+	  	  params2:{},
 	  	  labels: [{
 	        prop: 'createdAt',
 	        sortable: true,
@@ -115,63 +114,32 @@
 	        publishedAt: '王小虎',
 	        type: 'aaa',
 	        url: '1212212'
-	      }],
-	      jsonData1: [{
-	        index: 0,
-	        createdAt: '2016-05-02',
-	        publishedAt: '小米',
-	        type: 'aaa',
-	        url: '1212212'
-	
-	      }, {
-	        index: 1,
-	        createdAt: '2016-05-02',
-	        publishedAt: '小米',
-	        type: 'aaa',
-	        url: '1212212'
-	      }, {
-	        index: 2,
-	        createdAt: '2016-05-02',
-	        publishedAt: '小米',
-	        type: 'aaa',
-	        url: '1212212'
-	      }, {
-	        index: 3,
-	        createdAt: '2016-05-02',
-	        publishedAt: '小米',
-	        type: 'aaa',
-	        url: '1212212'
-	      }],
-	      jsonData2: [{
-	        index: 0,
-	        createdAt: '2016-05-02',
-	        publishedAt: '小换行',
-	        type: 'aaa',
-	        url: '1212212'
-	
-	      }, {
-	        index: 1,
-	        createdAt: '2016-05-02',
-	        publishedAt: '小换行',
-	        type: 'aaa',
-	        url: '1212212'
-	      }, {
-	        index: 2,
-	        createdAt: '2016-05-02',
-	        publishedAt: '小换行',
-	        type: 'aaa',
-	        url: '1212212'
-	      }, {
-	        index: 3,
-	        createdAt: '2016-05-02',
-	        publishedAt: '小换行',
-	        type: 'aaa',
-	        url: '1212212'
-	      }],
+	      }], 
 	  	}
 	  },
 	  components: {
-	  	InnerTable
+	  	InnerTable,
+	  },
+	  async created() {
+	  	let res = (await http.get('https://www.apiopen.top/meituApi?page=1'))
+	  },
+	  watch: {
+	  	orderType(newType) {
+	  		this.params = {
+	  			type: newType
+	  		}
+	  	},
+	  	orderType1(newType) {
+	  		this.params1 = {
+	  			type: newType
+	  		}
+	  	},
+	  	async orderType2(newType) {
+	  		this.params2 = {
+	  			type: newType
+	  		}
+	  		
+	  	},
 	  }
 	}
 </script>
