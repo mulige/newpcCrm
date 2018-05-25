@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 const Home = () => import('@/pages/Home')
+const Date = () => import('@/pages/Date')
 const Login = () => import('@/components/login')
 const Customer = () => import('@/pages/customer/Customer')
 const RealtimeInfo = () => import('@/pages/customer/children/RealtimeInfo')
@@ -41,6 +42,14 @@ export default new Router({
       component: Login,
       meta: {
         title: '登录'
+      }
+    },
+    {
+      path: '/date',
+      name: 'date',
+      component: Date,
+      meta: {
+        title: '日历'
       }
     },
 
