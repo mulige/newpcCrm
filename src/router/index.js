@@ -23,6 +23,9 @@ export default new Router({
       meta: {
         title: '登录'
       }
-    }
+    },
+
+
+
   ]
 })
