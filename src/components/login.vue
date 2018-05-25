@@ -24,14 +24,14 @@
   </div>
 </template>
 <script>
-  export default {
-    name: 'login',
-    data() {
-      return {
+export default {
+  name: 'login',
+  data () {
+    return {
 
-      }
-    },
+    }
   }
+}
 </script>
 <style>
   @import '../../static/iconfont/iconfont.css';

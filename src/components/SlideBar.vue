@@ -3,15 +3,15 @@
 	<el-row id="slider">
 		<el-col>
 			<el-menu :default-openeds="['0','1','2','3']">
-				<template v-for="(nav,navIndex) in sliderArr">
-					<el-submenu v-if="nav.child" :index="navIndex.toString()">
+				<template v-for="(nav,navIndex) in sliderArr" >
+					<el-submenu v-if="nav.child" :index="navIndex.toString()" :key="navIndex">
 						<template slot="title"><i class="el-icon-message"></i>{{nav.name}}</template>
 						<el-menu-item v-for="(child,index) in nav.child" :index="navIndex + '-' + index" :key="index">
 							<a class="nav" :href="'#'+child.id" :class="{'selected':flag==child.id}" @click="flag=child.id">{{child.name}}</a>
 						</el-menu-item>
 					</el-submenu>
 
-					<el-submenu v-else :index="navIndex.toString()">
+					<el-submenu v-else :index="navIndex.toString()" :key="navIndex">
 						<template slot="title">
 							<a class="nav" @click="flag=nav.id" :class="flag==nav.id?'selected':''" :href="'#'+nav.id">{{nav.name}}</a>
 						</template>

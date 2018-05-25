@@ -2,16 +2,25 @@
 import axios from 'axios'
 
 import { Message } from 'element-ui'
+import { Loading } from 'element-ui'
 
 // axios.defaults.baseURL = '/api'
 // 设置默认请求头
 axios.defaults.headers = {
   'X-Requested-With': 'XMLHttpRequest'
 }
-axios.defaults.timeout = 10000
+/*axios.defaults.timeout = 10000*/
 
+let loading
 // 请求拦截器
 axios.interceptors.request.use(config => {
+	loading = Loading.service({
+		lock: true,
+    text: '加载中',
+    background: 'rgba(0, 0, 0, 0.0)',
+    target: '#app'
+   
+	});
   config.headers = {
     'Content-Type': 'application/json'
   }
@@ -20,16 +29,17 @@ axios.interceptors.request.use(config => {
   // }
   return config
 }, error => {
+	
   return Promise.reject(error)
 })
 
 // 响应拦截器即异常处理
 axios.interceptors.response.use(response => {
-  console.log(response)
-
-  if (response.status != 200 && response.status != 304 && response.status != 200) {
+  loading.close()
+	console.log(response)
+  if (response.status != 200 && response.status != 304) {
     // console.log("err")
-    Message.error(response.statusText)
+    Message.error(response.statusText || '服务器错误')
   } else {
     switch (response.data.code) {
       // 处理共有的操作
@@ -49,6 +59,7 @@ axios.interceptors.response.use(response => {
 
   // Message.error(err.message)
 }, error => {
+	loading.close()
   console.log(error)
 
   // Message.error("连接到服务器失败")
@@ -81,11 +92,22 @@ export default {
     })
   },
   // put请求
-  put (url, data = {}) {
+  put (url, param = {}) {
     return new Promise((resolve, reject) => {
-      axios.put(url, data)
+      axios.put(url, param)
         .then(response => {
-          resolve(response.data)
+          resolve(response)
+        }, err => {
+          reject(err)
+        })
+    })
+  },
+  // delete
+  delete (url,param = {}){
+  	return new Promise((resolve, reject) => {
+      axios.delete(url, param)
+        .then(response => {
+          resolve(response)
         }, err => {
           reject(err)
         })
