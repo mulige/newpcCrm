@@ -13,10 +13,10 @@
 
 <script>
 export default {
-  props: ['tab','value'],
+  props: ['tab', 'value'],
   data () {
     return {
-     /* tab: {
+      /* tab: {
 	        key: '10010',
 	        value: '近十二个月日均资产',
 	        tabList: [
@@ -45,25 +45,22 @@ export default {
 	            key: '7',
 	            value: '150120-100'
 	          }
-	        ]},*/	
-      flag: this.value,
+	        ]}, */
+      flag: this.value
     }
   },
   methods: {
     handleClick (item, index) {
-      //this.flag = item.key
+      // this.flag = item.key
       this.$emit('input', item.key)
       this.setCurrentValue(item.key)
     },
-    setCurrentValue(v){
-    	if(this.flag == v) return
-    	this.flag = v;
+    setCurrentValue (v) {
+      if (this.flag === v) return
+      this.flag = v
     }
   },
   watch: {
-  	/*flag(newVal) {
-  		this.setCurrentValue(newVal)
-  	}*/
   },
   created () {
     console.log(this.tab)

@@ -239,8 +239,8 @@ export default {
     }
   },
   computed: {
-    params(){
-    	return Object.assign({},this.queryParams)
+    params () {
+      return Object.assign({}, this.queryParams)
     }
   },
   components: {
@@ -274,9 +274,9 @@ export default {
       // this.$emit("page-num-change",this.currentPageSize,val)
     },
 
-    /*headerStyle ({ row, index }) {
+    /* headerStyle ({ row, index }) {
       return 'table-head-th'
-    },*/
+    }, */
 
     async handlePromise () {
       var params
@@ -337,33 +337,31 @@ export default {
           confirmButtonText: '确定',
           cancelButtonText: '取消',
           type: 'warning'
-        })
-          .then(() => {
-            //
-            let idArr = this.selectItems.map(function (value, index, arr) {
-              // 需要修改 id
-              return value.createdAt
-            })
+        }).then(() => {
+          //
+          let idArr = this.selectItems.map(function (value, index, arr) {
+            // 需要修改 id
+            return value.createdAt
+          })
 
-            http.get(this.delUrl, { id: idArr }).then(res => {
-              // 需要修改
-              this.tableData = this.removeItem(
-                this.selectItems,
-                this.tableData,
-                'index'
-              )
-              this.$message({
-                type: 'success',
-                message: '删除成功!'
-              })
-            })
-          })
-          .catch(() => {
+          http.get(this.delUrl, { id: idArr }).then(res => {
+            // 需要修改
+            this.tableData = this.removeItem(
+              this.selectItems,
+              this.tableData,
+              'index'
+            )
             this.$message({
-              type: 'info',
-              message: '已取消删除'
+              type: 'success',
+              message: '删除成功!'
             })
           })
+        }).catch(() => {
+          this.$message({
+            type: 'info',
+            message: '已取消删除'
+          })
+        })
       }
     },
 
@@ -433,13 +431,9 @@ export default {
       for (let val of this.labels) {
         if (val.dictKey) {
           for (let value of arrData) {
-          	console.log(dict[val.dictKey],"jjj")
             if (dict[val.dictKey]) {
-            	
               for (let dicVal of dict[val.dictKey]) {
-                	
                 if (type === 'keyToValue' && value[val.prop] === dicVal.key) {
-
                   value[val.prop] = dicVal.value
                   break
                 } else if (
@@ -459,7 +453,6 @@ export default {
       } else {
         return arrData['0']
       }
-      
     },
 
     // 编辑功能
@@ -517,10 +510,9 @@ export default {
         let res = await http.get(this.addUrl, params)
         // 数据处理
         this.addData['id'] = res.data.id
-        this.addData = this.handleDict(this.addData,"keyToValue")
+        this.addData = this.handleDict(this.addData, 'keyToValue')
         this.tableData.unshift(this.addData)
-        
-        
+
         this.addData = Object.assign({}, this.addModel)
 
         this.addDialogFormVisible = false
