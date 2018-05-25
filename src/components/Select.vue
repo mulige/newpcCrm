@@ -52,7 +52,7 @@ export default {
         this.options = (await http.get(this.config.url, this.config.params)).data
       } else if (this.config.keyName) {
         this.options = JSON.parse(localStorage.getItem(this.config.dicName))[this.config.keyName]
-        	console.log(this.options, 'xxx')
+        console.log(this.options, 'xxx')
       }
     }
 

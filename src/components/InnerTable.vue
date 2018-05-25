@@ -1,5 +1,5 @@
 <template>
-	 <transition name="el-fade-in-linear">
+	<transition name="el-fade-in-linear">
   <div style="width:100%">
     <el-row class="btn-group" v-if="btnCheck">
       <el-button type="primary" size="mini" @click="addItem">{{addText}}</el-button>
