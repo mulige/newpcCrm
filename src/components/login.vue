@@ -14,8 +14,7 @@
             </div>
           </div>
           <div class="actions"><input type="submit" name="commit" value="登录" class="btn" style="letter-spacing: 6px;" /></div>
-          <input type="hidden" id="encryption" name="encryption" value='${encryption}' />
-          <input type="hidden" id="errMsg" name="errMsg" value='2002' />
+
         </form>
       </div>
       <div id="errDisplay">
@@ -25,7 +24,14 @@
   </div>
 </template>
 <script>
+  export default {
+    name: 'login',
+    data() {
+      return {
 
+      }
+    },
+  }
 </script>
 <style>
   @import '../../static/iconfont/iconfont.css';
