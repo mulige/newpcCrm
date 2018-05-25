@@ -3,6 +3,8 @@ import Router from 'vue-router'
 
 const Home = () => import('@/pages/Home')
 const Login = () => import('@/components/login')
+const Customer = () => import('@/pages/customer/Customer')
+const RealtimeInfo = () => import('@/pages/customer/children/RealtimeInfo')
 Vue.use(Router)
 
 export default new Router({
@@ -15,6 +17,23 @@ export default new Router({
       meta: {
       	title: '首页'
       }
+    },
+    {
+      path: '/customer',
+      name: 'customer',
+      component: Customer,
+      redirect: '/customer/realtimeInfo',
+      meta: {
+        title: '客户'
+      },
+      children:[{
+      	path: 'realtimeInfo',
+      	name: 'realtimeInfo',
+      	component: RealtimeInfo,
+      	meta: {
+      		title: '潜在客户'
+      	}
+      }]
     },
     {
       path: '/login',

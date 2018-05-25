@@ -66,7 +66,8 @@ export default {
       border-width: 1px;
       border-color:#c9e1f8;
       padding-right:15px;
-      background: #eff8ff;
+      /*background: #eff8ff;*/
+      background: #f5f5f5;
       min-height: 32px;
     }
     .item-text{

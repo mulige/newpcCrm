@@ -8,9 +8,13 @@ import 'element-ui/lib/theme-chalk/index.css'
 Vue.config.productionTip = false
 
 const Header = () => import("@/components/Header.vue")
+const FormTable = () => import("@/components/formtable/FormTable.vue")
+const InnerTable = () => import("@/components/InnerTable.vue")
 
 Vue.use(ElementUI)
 Vue.component('my-header',Header)
+Vue.component('form-table',FormTable)
+Vue.component('inner-table',InnerTable)
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

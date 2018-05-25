@@ -1,6 +1,6 @@
 <template>
   <el-row class="form-table">
-      <form-table-item :labelWidth="item.labelWidth||labelWidth" :label="item.label" :span="item.span" :height="item.height||height" :dictKey="item.dictKey" :value="item.prop?formData[item.prop]:item.value" v-for="(item,index) in configs" :key="index"></form-table-item>
+      <form-table-item :labelWidth="item.labelWidth||labelWidth" :label="item.label" :span="item.span||span" :height="item.height||height" :dictKey="item.dictKey" :value="item.prop?formData[item.prop]:item.value" v-for="(item,index) in configs" :key="index"></form-table-item>
   </el-row>
 </template>
 
@@ -44,6 +44,9 @@ export default {
     },
     height: {
     	default: "32px"
+    },
+    span: {
+    	default: 6
     }
 
   },
@@ -96,12 +99,20 @@ export default {
   components: {
     FormTableItem
   },
-  async created(){
+  async created () {
   	//需要修改
-  	if(this.api){
+  	if(this.api && !this.tableData.length){
   		this.formData = await http.get(this.api,this.params)
   	}
   	
+  },
+  watch:{
+  	tableData: {
+  		handler: function (newData) {
+  			this.formData = newData
+  		},
+  		deep: true
+  	}
   }
 
 }

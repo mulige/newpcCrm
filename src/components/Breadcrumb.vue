@@ -2,7 +2,7 @@
     <el-row class="breadcrumb">
       <el-col style="width: auto;">当前位置:</el-col>
       <el-col style="width: auto;margin-left: 10px;" class="breadcrumb-list">
-        <el-breadcrumb separator-class="el-icon-arrow-right" >
+        <el-breadcrumb>
           <el-breadcrumb-item v-for="(item,index) in routeList" :to="item.path" :key="index">{{item.title}}</el-breadcrumb-item>
         </el-breadcrumb>
       </el-col>

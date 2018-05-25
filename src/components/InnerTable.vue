@@ -13,7 +13,7 @@
             </el-table-column>
             <el-table-column v-if="indexing" type="index" label="序号" width="50">
             </el-table-column>
-            <el-table-column v-for='(label,index) in labels' :sortable="label.sortable" :prop="label.key?label.prop:label.prop" :label="label.name" :width="arrWidth[index]" show-overflow-tooltip :key="index">
+            <el-table-column v-for='(label,index) in labels' :sortable="label.sortable"  :resizable="false" :prop="label.key?label.prop:label.prop" :label="label.name" :width="arrWidth[index]" show-overflow-tooltip :key="index">
             </el-table-column>
             <el-table-column v-if="edit" label="操作" :width="180" fixed="right">
               <template slot-scope="scope">
@@ -231,7 +231,7 @@ export default {
     }
   },
   created () {
-    if (this.tableData.length === 0) {
+    if (this.tableData.length === 0 && this.apiUrl) {
       this.loading = true
       this.handlePromise()
     } else {
