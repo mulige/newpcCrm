@@ -14,7 +14,11 @@
       <table border="1" id="table">
 
       </table>
+      <div class="date__hid">
+        <textarea name="" id="date__hid__msg" cols="30" rows="10">
 
+        </textarea>
+      </div>
     </div>
 </template>
 <script>
@@ -65,7 +69,7 @@
 
             for(var l = 0, len = jsonHtml.length; l < len; l++) {
             if(date_str== jsonHtml[l].date) {
-              var newStr = '<p>'+jsonHtml[l].msg +'</p>';
+              var newStr = '<p class="date" date="'+ date_str+'">'+jsonHtml[l].msg +'</p>';
               date_str==_this.dnow?hasMsg='<td class="thisDay" date="'+date_str +'"><span  class="'+isRed +'">'+date_str+'</span>'+ newStr+'</td>':hasMsg='<td date="'+date_str +'"><span  class="'+isRed +'">'+date_str+'</span>'+ newStr+'</td>';
 
             }
@@ -132,13 +136,24 @@
          msg: '找豆豆'
        }];
        this.drawTable(jsonHtml)
+      },
+      //添加一个点击可编辑的事件
+      showNewMsg() {
+        var ps = document.getElementsByClassName('date');
+        for(var i = 0, len = ps.length; i < len; i++) {
+          ps[i].addEventListener('click',function(e) {
+//
+            console.log(this.getAttribute('date'));
+          })
+        }
+
       }
 
     },
     mounted() {
       //画出当前的月份的天数对应的表格
       this.getDaysInfo();
-      //进行数据的获取，显示到对应的位置
+      this.showNewMsg();
     },
     watch: {
       mnow: function(newVal,oldVal) {
@@ -166,17 +181,17 @@
     }
     table {
       width: 100%;
-      border: 1px solid blue;
+      border: 1px solid #333;
       tr {
         width: 100%;
-        border: 1px solid blue;
+        border: 1px solid #333;
         border-right: none;
         border-left: none;
         display: flex;
         justify-content: space-around;
         td {
             flex: 1;
-          border-right: 1px solid blue;
+          border-right: 1px solid #333;
           text-align: center;
           height: 100px;
           span[date] {
