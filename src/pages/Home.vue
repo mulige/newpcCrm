@@ -6,6 +6,32 @@
         <el-radio-button :label="1">我的</el-radio-button>
         <el-radio-button :label="2">团队</el-radio-button>
       </el-radio-group>
+      <el-row class="summary">
+      	<el-col class="summary-item" :span="4">
+      		<p><span>客户数</span><i>1233</i></p>
+      		<p><span>单前新开</span><i>15</i></p>
+      	</el-col>
+      	<el-col class="summary-item" :span="4">
+      		<p><span>潜在客户数</span><i>1233</i></p>
+      		<p><span>累计转化</span><i>15</i></p>
+      	</el-col>
+      	<el-col class="summary-item" :span="4">
+      		<p><span>当月股票交易量</span><i>1233</i></p>
+      		<p><span>昨日</span><i>15</i></p>
+      	</el-col>
+      	<el-col class="summary-item" :span="4">
+      		<p><span>昨日总资产</span><i>1233</i></p>
+      		<p><span>单前新开</span><i>15</i></p>
+      	</el-col>
+      	<el-col class="summary-item" :span="4">
+      		<p><span>客户数</span><i>1233</i></p>
+      		<p><span>单前新开</span><i>15</i></p>
+      	</el-col>
+      	<el-col class="summary-item" :span="4">
+      		<p><span>客户数</span><i>1233</i></p>
+      		<p><span>单前新开</span><i>15</i></p>
+      	</el-col>
+      </el-row>
       <el-row :gutter='20' class="content-wrapper">
 				<el-col class="content-block" :span="12">
 					<div class="title">
@@ -17,7 +43,7 @@
 						<el-radio-button :label="3">近12个月资产分值</el-radio-button>
 					</el-radio-group>
 					<el-row style="height:240px;overflow: hidden;">
-						<inner-table :labels="orderLabels" :jsonData="jsonData" :apiUrl="apiUrl" :queryParams="params" :pagination="true" :total="2000"></inner-table>
+						<inner-table :height="200" :labels="orderLabels" :jsonData="jsonData" :apiUrl="apiUrl" :queryParams="params" :pagination="true" :total="2000"></inner-table>
 					</el-row>
 				</el-col>
 				<el-col class="content-block" :span="12">
@@ -30,7 +56,7 @@
 						<el-radio-button :label="3">月报</el-radio-button>
 					</el-radio-group>
 					<el-row style="height:240px;overflow: hidden;">
-						<inner-table :labels="dailyLogLabels" :jsonData="jsonData" :apiUrl="apiUrl" :queryParams="dailyLogParams" :pagination="true" :total="2000" :arrWidth="[50,,50]"></inner-table>
+						<inner-table :height="200" :labels="dailyLogLabels" :jsonData="jsonData" :apiUrl="apiUrl" :queryParams="dailyLogParams" :pagination="true" :total="2000" :arrWidth="[50,,50]"></inner-table>
 					</el-row>
 				</el-col>
 				<el-col class="content-block" :span="12">
@@ -42,7 +68,7 @@
 						<el-radio-button :label="2">近15个交易日</el-radio-button>
 					</el-radio-group>
 					<el-row style="height:240px;overflow: hidden;">
-						<inner-table :labels="labels" :jsonData="jsonData" :apiUrl="apiUrl" :queryParams="params2" :pagination="true" :total="2000"></inner-table>
+						<inner-table :height="200" :labels="dailyLogLabels" :jsonData="jsonData" :apiUrl="apiUrl" :queryParams="params2" :pagination="true" :total="2000" :arrWidth="[50]"></inner-table>
 					</el-row>
 				</el-col>
 			</el-row>
@@ -172,6 +198,34 @@ export default {
 <style lang="scss">
 #home {
   padding: 20px;
+  .summary{
+  	height: 80px;
+  	margin: 10px 0;
+  	border-right: 1px solid #ccc;
+  	.summary-item{
+  		height: 100%;
+  		border: 1px solid #ccc;
+  		border-right: none;
+  		display: flex;
+  		flex-direction: column;
+  		align-items: center;
+  		justify-content: center;
+  		font-size: 12px;
+  		p:nth-child(1){
+  			margin-bottom:5px;
+  			i{
+  				color: #409EFF;
+  				font-size: 16px;
+  			}
+  		}
+  		p:nth-child(2){
+  			i{
+  				color: #409EFF;
+  				margin-left: 4px;
+  			}
+  		}
+  	}
+  }
   .content-wrapper {
     .content-block {
       margin-top: 20px;
