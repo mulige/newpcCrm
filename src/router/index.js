@@ -6,6 +6,8 @@ const Date = () => import('@/pages/Date')
 const Login = () => import('@/components/login')
 const Customer = () => import('@/pages/customer/Customer')
 const RealtimeInfo = () => import('@/pages/customer/children/RealtimeInfo')
+const MyPotCus = () => import('@/components/potentialCustomers/MyPotCus')
+const AddPotCue = () => import('@/components/potentialCustomers/addPotCus')
 Vue.use(Router)
 
 export default new Router({
@@ -32,9 +34,28 @@ export default new Router({
       	name: 'realtimeInfo',
       	component: RealtimeInfo,
       	meta: {
-      		title: '潜在客户'
+      		title: '实时概况'
       	}
-      }]
+      },
+        {
+          path: 'myPotCus',
+          name: 'MyPotCus',
+          component: MyPotCus,
+          meta: {
+            title: '潜在客户'
+          },
+          children: [
+            {
+              path: 'addpotcus',
+              name: 'AddPotCue',
+              component: AddPotCue,
+              meta: {
+                title: '新增潜在客户'
+              }
+            }
+          ]
+        }
+      ]
     },
     {
       path: '/login',
