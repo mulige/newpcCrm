@@ -10,10 +10,10 @@ let needLoadingRequestCount = 0
 export function showFullScreenLoading() {
     if (needLoadingRequestCount === 0) {
         loading = Loading.service({
-					lock: true,
-			    text: '加载中',
-			    background: 'rgba(0, 0, 0, 0.0)',
-			    target: '#app'
+        	lock: false,
+			    text: '请稍后',
+			    background: 'rgba(0, 0, 0, 0.6)',
+					fullscrenn: true
 		 		});
     }
     needLoadingRequestCount++

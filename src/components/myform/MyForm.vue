@@ -10,7 +10,7 @@
 	import FormItem from './FormItem'
 	import http from '@/utils/http.js'
 	export default {
-		name:'FormItem',
+		name:'MyForm',
 		data() {
 			return {
 				model:Object.assign({},this.modelData)

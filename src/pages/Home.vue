@@ -17,20 +17,20 @@
 						<el-radio-button :label="3">近12个月资产分值</el-radio-button>
 					</el-radio-group>
 					<el-row style="height:240px;overflow: hidden;">
-						<inner-table :labels="labels" :jsonData="jsonData" :apiUrl="apiUrl" :queryParams="params" :pagination="true" :total="2000"></inner-table>
+						<inner-table :labels="orderLabels" :jsonData="jsonData" :apiUrl="apiUrl" :queryParams="params" :pagination="true" :total="2000"></inner-table>
 					</el-row>
 				</el-col>
 				<el-col class="content-block" :span="12">
 					<div class="title">
-						<i class="el-icon-caret-right title-icon"></i>名下客户排名
+						<i class="el-icon-caret-right title-icon"></i>工作日志
 					</div>
-					<el-radio-group v-model="orderType1" size="mini" class="type-group">
+					<el-radio-group v-model="dailyLog" size="mini" class="type-group">
 						<el-radio-button :label="1">日报</el-radio-button>
 						<el-radio-button :label="2">周报</el-radio-button>
 						<el-radio-button :label="3">月报</el-radio-button>
 					</el-radio-group>
 					<el-row style="height:240px;overflow: hidden;">
-						<inner-table :labels="labels" :jsonData="jsonData" :apiUrl="apiUrl" :queryParams="params1" :pagination="true" :total="2000"></inner-table>
+						<inner-table :labels="dailyLogLabels" :jsonData="jsonData" :apiUrl="apiUrl" :queryParams="dailyLogParams" :pagination="true" :total="2000" :arrWidth="[50,,50]"></inner-table>
 					</el-row>
 				</el-col>
 				<el-col class="content-block" :span="12">
@@ -60,33 +60,58 @@ export default {
       orderType: 1,
       apiUrl: 'https://www.apiopen.top/meituApi?page=1',
       params: {},
-      orderType1: 1,
-      params1: {},
-      orderType2: 1,
-      params2: {},
-      labels: [
+      orderLabels: [
         {
           prop: 'createdAt',
-          sortable: true,
-          name: '日期',
-          dictKey: 'FncRndCode'
+          name: '排名'
         },
         {
           prop: 'publishedAt',
-          sortable: false,
-          name: '项目执行人'
+          name: '客户名称'
         },
         {
           prop: 'type',
-          sortable: true,
-          name: '项目详情'
+          name: '客户编号'
         },
         {
           prop: 'url',
-          sortable: false,
-          name: '项目说明'
+          sortable: true,
+          name: '客户星级'
+        },
+        {
+          prop: 'url',
+          name: '昨日资产'
         }
       ],
+      dailyLog: 1,
+      dailyLogParams: {},
+      dailyLogLabels: [
+        {
+          prop: 'createdAt',
+          name: '序号'
+        },
+        {
+          prop: 'publishedAt',
+          name: '填写时间'
+        },
+        {
+          prop: 'type',
+          name: '日期'
+        },
+        {
+          prop: 'url',
+          sortable: true,
+          name: '新增客户数'
+        },
+        {
+          prop: 'url',
+          name: '新增潜在客户数',
+          sortable: true,
+        }
+      ],
+      orderType2: 1,
+      params2: {},
+      
       jsonData: [
         {
           index: 0,
@@ -130,8 +155,8 @@ export default {
         type: newType
       }
     },
-    orderType1 (newType) {
-      this.params1 = {
+    dailyLog (newType) {
+      this.dailyLogParams = {
         type: newType
       }
     },
